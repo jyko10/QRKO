@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AboutKO Music - PLAY</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+  }
+  #playBtn {
+    padding: 0;
+    width: 150px;
+    height: 150px;
+    border: 3px solid white;
+    border-radius: 50%;
+    background: transparent;
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    box-shadow: 0 0 15px rgba(255,255,255,0.2);
+  }
+  #playBtn:hover {
+    background: white;
+    color: #203a43;
+    box-shadow: 0 0 30px white;
+  }
+  #player {
+    display: none;
+    width: 90vw;
+    max-width: 560px;
+    height: 315px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 0 40px rgba(255,255,255,0.3);
+  }
+</style>
+</head>
+<body>
+
+<button id="playBtn">PLAY</button>
+
+<iframe
+  id="player"
+  src="https://www.youtube.com/embed/4iFP_wd6QU8?controls=1&rel=0&modestbranding=1"
+  allow="autoplay; encrypted-media"
+  allowfullscreen
+  title="AboutKO Music">
+</iframe>
+
+<script>
+  const playBtn = document.getElementById('playBtn');
+  const player = document.getElementById('player');
+
+  playBtn.addEventListener('click', () => {
+    playBtn.style.display = 'none';
+    player.style.display = 'block';
+
+    // 자동 재생을 위해 src에 autoplay=1 추가
+    if (!player.src.includes('autoplay=1')) {
+      player.src += (player.src.includes('?') ? '&' : '?') + 'autoplay=1';
+    }
+  });
+</script>
+
+</body>
+</html>

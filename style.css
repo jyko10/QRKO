@@ -1,1 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
 
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+  position: relative;
+  color: white;
+}
+
+#startScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1s ease;
+}
+
+#startScreen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tap-text {
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  opacity: 0.7;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.slideshow {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 2s ease, transform 6s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(to top, rgba(0,0,0,.65), rgba(0,0,0,.15) 40%, rgba(0,0,0,.35));
+}
+
+#musicToggle {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 5;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,.14);
+  color: #fff;
+  font-size: 1rem;
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+}
+
+.content {
+  position: fixed;
+  left: 50%;
+  bottom: 48px;
+  transform: translateX(-50%);
+  z-index: 4;
+  width: calc(100% - 32px);
+  max-width: 520px;
+  text-align: center;
+  padding: 18px 16px;
+  border-radius: 24px;
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(14px);
+  opacity: 0;
+  animation: fadeUp 1.6s ease forwards;
+  animation-delay: .6s;
+}
+
+.content h1 {
+  font-size: clamp(1.7rem, 5vw, 2.4rem);
+  font-weight: 500;
+}
+
+.content p {
+  margin-top: 6px;
+  font-size: .95rem;
+  opacity: .88;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%,16px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%,0);
+  }
+}
+
+@keyframes pulse {
+  0%,100% { opacity:.35; }
+  50% { opacity:.85; }
+}
